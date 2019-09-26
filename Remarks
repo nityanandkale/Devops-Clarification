@@ -12,16 +12,18 @@ sudo systemctl restart docker
 --------------------------------webserver-----------------
 
 adduser deploy
+sudo -su
 echo "deploy:jenkins" | chpasswd
 groupadd docker
 usermod -a -G docker deploy
 echo "deploy ALL=(ALL) NOPASSWD: /usr/bin/docker run *" >> /etc/sudoers
 echo "deploy ALL=(ALL) NOPASSWD: /usr/bin/docker pull *" >> /etc/sudoers
-/usr/bin/yum -y install docker
-/usr/bin/systemctl enable docker
-/usr/bin/systemctl start docker
+exit
+sudo /usr/bin/yum -y install docker
+sudo /usr/bin/systemctl enable docker
+sudo /usr/bin/systemctl start docker
 
-yum -y install sshpass  // install only in jeniks server
+sudo yum -y install sshpass  // install only in jeniks server
 
 *****************************************************************************************************
 
